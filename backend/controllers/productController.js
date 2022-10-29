@@ -2,7 +2,7 @@ const Product = require("../models/productModel");
 
 
 
-// Create Product
+// Create Product -- Admin
 exports.createProduct = async (req, res, next) =>{
     
     const product = await Product.create(req.body);
@@ -13,7 +13,12 @@ exports.createProduct = async (req, res, next) =>{
     })
 }
 
-exports.getAllProducts = (req,res) => {
+// Get All Product
+exports.getAllProducts = async (req,res) => {
 
-    res.status(200).json({message:"Route is working fine"})
+    const products = await Product.find();
+    res.status(200).json({
+        success:true,
+        products    
+    })
 }
